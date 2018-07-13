@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Knockout 02</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <script src="http://knockoutjs.com/downloads/knockout-3.2.0.js"></script>
+</head>
+<body>
+    <main class="container">
+        <p class="is-size-1">
+            The name is <strong class="has-background-warning" data-bind="text: personName"></strong>, I'm <strong class="has-background-warning" data-bind="text: personAge"></strong> years old.
+        </p>
+        <div class="field">
+          <label class="label">Name</label>
+          <div class="control">
+            <input class="input" data-bind="value: personName" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Age</label>
+          <div class="control">
+            <input type="number" class="input" data-bind="value: personAge" />
+          </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <a class="bd-prev-next-bis-prev" href="./index.html">
+                    ← Prev
+                </a>
+            </div>
+            <div class="column ">
+                <a class="bd-prev-next-bis-next is-pulled-right" href="./index-3.html">
+                    Next →
+                </a>
+            </div>
+        </div>
+    </main>
+    <script>
+        const myViewModel = {
+            personName: ko.observable('Chris'),
+            personAge: ko.observable(23)
+        }
+        ko.applyBindings(myViewModel)
+    </script>
+</body>
+</html>

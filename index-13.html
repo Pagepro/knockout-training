@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Knockout 13</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="http://knockoutjs.com/downloads/knockout-3.2.0.js"></script>
+    <style>
+        .product {
+          margin-bottom: 0.5rem;
+        }
+
+        .unstyled-list {
+          list-style: none;
+          padding-left: 0;
+          margin-top: 0;
+          margin-bottom: 0;
+        }
+
+        button {
+          border: 1px solid #ccc;
+          border-radius: 3px;
+          background-color: #fff;
+          color: #000;
+          padding: 0 .6rem;
+          margin: 0;
+          display: inline-block;
+          cursor: pointer;
+        }
+
+        button:hover,
+        button:focus {
+          background-color: #eee;
+          border-color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <p class="is-size-1">
+            Components
+        </p>
+
+        <div class="container">
+          <ul class="hidden unstyled-list" data-bind="foreach: products, css: { hidden: !enabled }">
+            <li class="product">
+              <strong data-bind="text: name"></strong>
+              <like-widget params="value: userRating"></like-widget>
+            </li>
+          </ul>
+        </div>
+
+        <script type="text/html" id="like-widget-template">
+          <div class="like-or-dislike" data-bind="visible: !chosenValue()">
+            <button data-bind="click: like"><i class="fa fa-thumbs-o-up"></i> Like it</button>
+            <button data-bind="click: dislike"><i class="fa fa-thumbs-o-down"></i> Dislike it</button>
+          </div>
+          <div class="result" data-bind="visible: chosenValue">
+            <i class="fa" data-bind="css: { 'fa-thumbs-o-up': isLike, 'fa-thumbs-o-down': !isLike() }"></i>
+            <span>You <strong data-bind="text: chosenValue"></strong> it</span>
+          </div>
+        </script>
+
+        <script>
+            ko.components.register('like-widget', {
+  viewModel: function(params) {
+    // Data: value is either null, 'like', or 'dislike'
+    this.chosenValue = params.value;
+
+    // Behaviors
+    this.like = function() {
+      this.chosenValue('like');
+    }.bind(this);
+
+    this.dislike = function() {
+      this.chosenValue('dislike');
+    }.bind(this);
+    
+    this.isLike = ko.pureComputed(function (){
+      return this.chosenValue() === 'like';
+    }, this);
+  },
+  template: document.getElementById('like-widget-template').textContent
+});
+
+function Product(name, rating) {
+  this.name = name;
+  this.userRating = ko.observable(rating || null);
+}
+
+function MyViewModel() {
+  this.products = [
+    new Product('Garlic bread'),
+    new Product('Pain au chocolat'),
+    new Product('Seagull spaghetti', 'like') // This one was already 'liked'
+  ];
+
+  this.enabled = true;
+}
+
+ko.applyBindings(new MyViewModel());
+        </script>
+
+        <div class="columns">
+            <div class="column">
+                <a class="bd-prev-next-bis-prev" href="./index-11.html">
+                    ← Prev
+                </a>
+            </div>
+            <div class="column ">
+                <a class="bd-prev-next-bis-next is-pulled-right" href="./index-13.html">
+                    Next →
+                </a>
+            </div>
+        </div>
+</body>
+</html>

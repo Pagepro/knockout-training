@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Knockout 08</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+
+    <script src="http://knockoutjs.com/downloads/knockout-3.2.0.js"></script>
+</head>
+<body>
+    <main class="container">
+        <p class="is-size-1">
+            Event Binding Example #1
+        </p>
+
+        <div>
+            You've clicked <strong class="has-background-warning" data-bind="text: numberOfClicks"></strong>  times
+            <button data-bind="click: incrementClickCounter">Click me</button>
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: teamMembers">
+                <tr>
+                    <td data-bind="text: $index"></td>
+                    <td><a href="#" data-bind="text: name"></a></td>
+                    <td data-bind="text: surname"></td>
+                    <td>
+                        <button data-bind="click: $parent.getName">Name me</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <script type="text/javascript">
+            var viewModel = {
+                numberOfClicks : ko.observable(0),
+                incrementClickCounter : function() {
+                    var previousCount = this.numberOfClicks()
+                    this.numberOfClicks(previousCount + 1)
+                },
+                getName: function (member) {
+                    alert(`My name is ${member.name}. Nice to meet you!`)
+                },
+                teamMembers: ko.observableArray([
+                    {
+                        name: 'Chris',
+                        surname: 'Lojniewsky'
+                    },
+                    {
+                        name: 'Mark',
+                        surname: 'Markowsky'
+                    },
+                    {
+                        name: 'Michael',
+                        surname: 'Polansky'
+                    }
+                ])
+            }
+            ko.applyBindings(viewModel)
+        </script>
+
+        <div class="columns">
+            <div class="column">
+                <a class="bd-prev-next-bis-prev" href="./index-7.html">
+                    ← Prev
+                </a>
+            </div>
+            <div class="column ">
+                <a class="bd-prev-next-bis-next is-pulled-right" href="./index-9.html">
+                    Next →
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

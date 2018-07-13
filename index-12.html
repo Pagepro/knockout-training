@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Knockout 12</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+
+    <script src="http://knockoutjs.com/downloads/knockout-3.2.0.js"></script>
+</head>
+<body>
+    <main class="container">
+        <p class="is-size-1">
+            Templating and foreach
+        </p>
+        <h2 class="is-size-2">Participants</h2>
+
+        <ul data-bind="template: { name: 'seasonTemplate', foreach: seasons, as: 'season' }"></ul>
+
+        <script type="text/html" id="seasonTemplate">
+            <li>
+                <strong data-bind="text: name"></strong>
+                <ul data-bind="template: { name: 'monthTemplate', foreach: months, as: 'month' }"></ul>
+            </li>
+        </script>
+
+        <script type="text/html" id="monthTemplate">
+            <li>
+                <span data-bind="text: month"></span>
+                is in
+                <span data-bind="text: season.name"></span>
+            </li>
+        </script>
+
+        <script>
+            var viewModel = {
+                seasons: ko.observableArray([
+                    { name: 'Spring', months: [ 'March', 'April', 'May' ] },
+                    { name: 'Summer', months: [ 'June', 'July', 'August' ] },
+                    { name: 'Autumn', months: [ 'September', 'October', 'November' ] },
+                    { name: 'Winter', months: [ 'December', 'January', 'February' ] }
+                ])
+            }
+            ko.applyBindings(viewModel)
+        </script>
+
+        <div class="columns">
+            <div class="column">
+                <a class="bd-prev-next-bis-prev" href="./index-11.html">
+                    ← Prev
+                </a>
+            </div>
+            <div class="column ">
+                <a class="bd-prev-next-bis-next is-pulled-right" href="./index-13.html">
+                    Next →
+                </a>
+            </div>
+        </div>
+</body>
+</html>

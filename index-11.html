@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Knockout 11</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+
+    <script src="http://knockoutjs.com/downloads/knockout-3.2.0.js"></script>
+</head>
+<body>
+    <main class="container">
+        <p class="is-size-1">
+            Templating and foreach
+        </p>
+        <h2 class="is-size-2">Participants</h2>
+
+        <ul>
+            <li data-bind="template: { name: 'person-template', foreach: people }"></li>
+        </ul>
+
+        <script type="text/html" id="person-template">
+            <h3 class="is-size-3" data-bind="text: name"></h3>
+            <p>Credits: <span data-bind="text: credits"></span></p>
+        </script>
+
+        <script type="text/javascript">
+             function viewModel () {
+                 this.people = [
+                    { name: 'Franklin', credits: 250 },
+                    { name: 'Mario', credits: 5800 }
+                ]
+             }
+             ko.applyBindings(viewModel)
+        </script>
+
+        <div class="columns">
+            <div class="column">
+                <a class="bd-prev-next-bis-prev" href="./index-10.html">
+                    ← Prev
+                </a>
+            </div>
+            <div class="column ">
+                <a class="bd-prev-next-bis-next is-pulled-right" href="./index-12.html">
+                    Next →
+                </a>
+            </div>
+        </div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Knockout 05</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <script src="http://knockoutjs.com/downloads/knockout-3.2.0.js"></script>
+</head>
+<body>
+    <main class="container">
+        <p class="is-size-1">
+            Excercise 1: <strong>PERT Calculator</strong>
+        </p>
+        <article
+            class="message">
+          <div class="message-body">
+            Prepapare a PERT estimation calculator.<br>
+            Inputs: optimistic, most possible, pesimisstic estimations.<br>
+            Result: estimated time.<br>
+          </div>
+        </article>
+        <div class="field">
+          <label class="label">The most Optimistic estimation (O)*</label>
+          <div class="control">
+            <input class="input" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">The most Likely estimation (M)*</label>
+          <div class="control">
+            <input class="input" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">The most Pesimistic estimation (P)*</label>
+          <div class="control">
+            <input class="input" />
+          </div>
+        </div>
+        <div>
+            PERT Estimation (TE): <strong class="has-background-warning"> 0 </strong>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <a class="bd-prev-next-bis-prev" href="./index-4.html">
+                    ← Prev
+                </a>
+            </div>
+            <div class="column ">
+                <a class="bd-prev-next-bis-next is-pulled-right" href="./index-6.html">
+                    Next →
+                </a>
+            </div>
+        </div>
+    </main>
+    <script>
+        function myViewModel () {
+            this.firstName = ko.observable('Chris')
+            this.lastName = ko.observable('Lojniewski')
+
+            this.fullName = ko.computed(function () {
+                return this.firstName() + ' ' + this.lastName()
+            })
+        }
+        ko.applyBindings(myViewModel)
+    </script>
+</body>
+</html>

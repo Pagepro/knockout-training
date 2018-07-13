@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Knockout 04</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <script src="http://knockoutjs.com/downloads/knockout-3.2.0.js"></script>
+</head>
+<body>
+    <main class="container">
+        <p class="is-size-1">
+            My full name is <strong class="has-background-warning" data-bind="text: fullName"></strong>.
+        </p>
+        <div class="field">
+          <label class="label">First name</label>
+          <div class="control">
+            <input class="input" data-bind="value: firstName" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Last name</label>
+          <div class="control">
+            <input class="input" data-bind="value: lastName" />
+          </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <a class="bd-prev-next-bis-prev" href="./index-3.html">
+                    ← Prev
+                </a>
+            </div>
+            <div class="column ">
+                <a class="bd-prev-next-bis-next is-pulled-right" href="./index-5.html">
+                    Next →
+                </a>
+            </div>
+        </div>
+    </main>
+    <script>
+        function myViewModel () {
+            this.firstName = ko.observable('Chris')
+            this.lastName = ko.observable('Lojniewski')
+
+            this.fullName = ko.computed(function () {
+                return this.firstName() + ' ' + this.lastName()
+            })
+        }
+        ko.applyBindings(myViewModel)
+    </script>
+</body>
+</html>
